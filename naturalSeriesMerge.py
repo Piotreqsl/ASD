@@ -1,7 +1,5 @@
 # scalanie serii naturalnych
 
-import re
-
 
 class Node:
     def __init__(self, dataval=None):

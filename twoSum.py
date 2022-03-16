@@ -16,5 +16,5 @@ def findSum(tab, x):
             break
     print("Suma nieznaleziona")
 
-findSum([2,4,6,7,8], 16)
+findSum([2,4,6,7,8], 15)
         
