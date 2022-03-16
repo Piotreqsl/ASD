@@ -6,8 +6,6 @@ from zad2testy import printmy
 
 def less(int1, int2):
 
- 
-
   if(int1[0] < int2[0]):
     return True
   elif (int1[0] > int2[0]):
@@ -53,31 +51,27 @@ def sort(L, low, high):
 def depth(L):
     n = len(L)
     sort(L,0, n-1)
-    prev_start = -10
-    max_licznik = 0
-    for i in range(n -1):
+    #printmy(L)
+
+    for i in range(n):
+      L[i].append(True)
     
-      cur_start, cur_end = L[i]
-      if(cur_start == prev_start):
-        continue
-      prev_start = cur_start
+    max = 0
+    for i in range(n):
+      if(L[i][2] == True):
+        count = 0
+        for j in range(i+1, n):
+          if(L[i][1] >= L[j][0]):
+            if(L[i][1] >= L[j][1]):
+              L[j][2] = False
+              count +=1
 
-      cur_licznik = 0
+          else:
+            break
+        if(count > max):
+          max = count
+    return max
 
-      for j in range(i+1,n):
-        start, end = L[j]
-        if(start == cur_start):
-          cur_licznik += 1
-          continue
-        if(start >= cur_end):
-          break
-        if( start < cur_end and end <= cur_end):
-          cur_licznik += 1
-      
-      if(cur_licznik > max_licznik):
-        max_licznik = cur_licznik
-
-    return max_licznik
     
   
 
