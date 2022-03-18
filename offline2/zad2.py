@@ -1,4 +1,4 @@
-#Piotr Śliperski
+# Piotr Śliperski
 
 # Tworzę nowe tablice start i end, gdzie będe przechowywał posortowane początki i konce przedziałow, zeby rozroznic ktory poczatek nalezy do ktorego konca
 # stosuje drugie pole index (index jest z kolejnosci wejsciowej). Tablice start i end sortuję Quicksortem wg pierwszej pozycji.

@@ -1,5 +1,5 @@
 ## element ktory wystepuje ponad n/2 razy w tablicy
-## patent jest taki że biore dwa pierwsze elementy z tablicy
+## patent jest taki że biore dwa różne elementy z tablicy
 ## one są kandytatami na majorityEl (z ZSD)]
 
 
@@ -37,4 +37,4 @@ def printMajority(A):
     else:
         print("No Majority Element")
 
-isMajority([3,3,4,2,4,4,2,4,4])
+printMajority([3,3,4,2,4,4,2,4,4])

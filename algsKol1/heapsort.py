@@ -23,9 +23,24 @@ def build_heap(A):
     for i in range(parent(n-1), -1, -1):
         heapify(A, n, i)
 
+def addToHeap(A, el):
+    A.append(el)
+    i = len(A) -1
+    while(i > 0 and A[i] > A[parent(i)]):
+        A[i], A[parent(i)] = A[parent(i)], A[i]
+        i = parent(i)
+
 def heapSort(A):
     n = len(A)
     build_heap(A)
     for i in range(n-1, 0, -1):
         A[0], A[i] = A[i], A[0]
         heapify(A, i, 0)
+
+A = [7,4,3,9,8]
+build_heap(A)
+print(A)
+addToHeap(A, 10)
+print(A)
+heapSort(A)
+print(A)
