@@ -4,6 +4,7 @@ def QuickSort(A, p, r):
         QuickSort(A, p, q-1)
         QuickSort(A, q+1, r)
 
+
 def partition(A, p, r):
     x= A[r]
     i = p-1

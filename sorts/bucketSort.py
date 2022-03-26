@@ -3,6 +3,8 @@
 ## bo bierzemy indexy na podstawie liczb (intow), a tu mamy floaty
 
 # kazdy bucket mozemy se juz posortowac insertem ;)
+# bucket sort O (N+K) gdzie k to ilość bucketów
+
 
 def insertionSort(b):
     for i in range(1, len(b)):

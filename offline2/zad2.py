@@ -10,6 +10,7 @@
 
 from zad2testy import runtests
 def partition(T, low, high):
+
     pivot = T[high][0]
     i = low - 1
     for j in range(low, high):
@@ -21,6 +22,8 @@ def partition(T, low, high):
 
 
 def quicksort(T, low, high):
+
+
     while low < high:
         q = partition(T, low, high)
         if(q-low <= high-q):

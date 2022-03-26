@@ -8,5 +8,5 @@
 
 ## dana posortowana tablica T z liczbami pierwszymi
 ## jest liczba x, zadanie polega na znalezieniu dwoch indexow i, j i<j
-## T[i] i T[j] = x
+## T[i] + T[j] = x
 ##
