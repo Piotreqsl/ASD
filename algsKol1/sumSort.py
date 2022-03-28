@@ -1,6 +1,4 @@
 
-
-from itertools import count
 from random import randint
 
 

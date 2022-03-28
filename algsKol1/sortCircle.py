@@ -1,9 +1,4 @@
 
-
-
-from cv2 import circle
-
-
 def insertionSort(A):
     n = len(A)
     for i in range(1, n):
