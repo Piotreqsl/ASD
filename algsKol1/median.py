@@ -1,10 +1,3 @@
-## jeżeli chcemy sprawdzić na jaki element bedzie stał na pozycji k w finalnie posortowanej tablicy
-
-## 1 opcja to takie ala wyszukiwanie binarne z funkcją partition z QS
-
-import math
-
-
 def partiton(A, p, r):
     x = A[r]
     i = p-1
@@ -30,10 +23,25 @@ def select(A, p, r,k):
             return select(A, q+1, r, k)
         else:
             return select(A, p, q-1, k)
-print(select(A,0, len(A)- 1, 2))
 
 
-## OPCJA nr 2 to algorytm magicznych piątek, czyli mediana median
-# pomocniczo insertion sorcik na sortowanie małych problemów
+def Median(T):
+    n = len(T)
+
+    linearT =[]
+    for el in T:
+        for el2 in el:
+            linearT.append(el2)
+
+    low_index = ((n**2)-n) //2
+    high_index = (((n**2)-n) //2) + n -1
 
 
+    low_val = select(linearT,0,len(linearT)-1, low_index)
+    high_val = select(linearT,0,len(linearT)-1, high_index)
+
+    ## no i teraz powpisywać se do tablicy odpowiednio
+    print(low_val, high_val)
+
+T = [ [2,3,5], [7,11,13], [17,19,23]]
+Median(T)

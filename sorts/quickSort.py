@@ -15,6 +15,16 @@ def partition(A, p, r):
     A[i+1], A[r] = A[r], A[i+1]
     return i+1
 
+def optimalQS(A, p, r):
+    while(p< r):
+        q = partition(A, p, r)
+        if(q-p <= r-q):
+            optimalQS(A,p,q-1)
+            p = q+1
+        else:
+            optimalQS(A,q+1,r)
+            r = q-1
+
 A = [5,4,3,8,9]
 #QuickSort(A, 0, 4)
 #print(A)
@@ -37,15 +47,7 @@ def iterativeQS(A):
 
 #quick sort z optymalnym kopcem
 
-def optimalQS(A, p, r):
-    while(p< r):
-        q = partition(A, p, r)
-        if(q-p <= r-q):
-            optimalQS(A,p,q-1)
-            p = q+1
-        else:
-            optimalQS(A,q+1,r)
-            r = q-1
+
 
 
 optimalQS(A, 0, 4)

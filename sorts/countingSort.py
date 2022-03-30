@@ -1,5 +1,5 @@
 ## jeżeli mamy liczby z zakresu 1..k
-## jeżeli zadanko z liczbami 1...n^2 to wtedy radix
+## jeżeli zadanko z liczbami 1...n^2 to wtedy radix po % n i //n
 
 def counting_sort(A, _min, _max):
   m = _max - _min + 1

@@ -29,6 +29,7 @@ def checkSums(A):
             if left != i and right !=i:
                 if(A[left] + A[right] == dest):
                     flag = True
+                    break
                 elif (A[left] + A[right] < dest):
                     left+=1
                 else:
@@ -41,3 +42,6 @@ def checkSums(A):
         if not flag:
             return False
     return True
+
+A= [12,5,7,2,3,1,1,0,0,0]
+print(checkSums(A))

@@ -28,10 +28,8 @@ def isMajority(A, cand):
 
         
 def printMajority(A):
-    # Find the candidate for Majority
     cand = findCandidate(A)
- 
-    # Print the candidate if it is Majority
+
     if isMajority(A, cand) == True:
         print(cand)
     else:

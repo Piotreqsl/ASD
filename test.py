@@ -1,87 +1,55 @@
-def insertion_sort(A):
+def preprocessArr(A):
+  for x in range(len(A)):
+    count = [0] * 10
+    liczba = A[x]
+    while(liczba > 0):
+      count[liczba%10] +=1
+      liczba = liczba //10
+    single, multi = 0, 0
+    for i in range(10):
+      if(count[i] == 1):
+        single +=1
+      elif(count[i] > 1):
+        multi +=1
+    A[x] = [A[x], single, multi]
+
+def sortByMulti(A):
   n = len(A)
-  for i in range(1, n):
-    key = A[i]
-    j = i - 1
-    while j >= 0 and A[j][1] > key[1]:
-      A[j+1] = A[j]
-      j -= 1
-    A[j+1] = key
-
-  return A
-
-
-def find_bucket(val, n, _min, _max):
-  i = int((val-_min)/(_max-_min)*n)
-  if i == n: i -= 1
-  
-  return i
-
-
-def bucket_sort(A, n, _min, _max):
-  B = [0]*n
-
+  count = [0] * 10
+  B = [0] * n
   for i in range(n):
-    B[i] = []
-
+    count[A[i][2]] +=1
+  for i in range(1,10):
+    count[i] += count[i-1]
+  for i in range(n-1 ,-1, -1):
+    B[count[A[i][2]]- 1] = A[i]
+    count[A[i][2]] -=1
   for i in range(n):
-    B[find_bucket(A[i][1], n, _min, _max)].append(A[i])
+    A[-i-1] = B[i]
 
-  for i in range(n):
-    insertion_sort(B[i])
-
-  i = 0
-  for j in range(n):
-    for k in range(len(B[j])):
-      A[i] = B[j][k]
-      i += 1
-
-  return A
-
-
-def min_max(A):
-  _min = _max = A[0][1]
+def sortBySingle(A):
   n = len(A)
-
-  for i in range(1, n-1, 2):
-    if A[i][1] < A[i+1][1]:
-      curr_min = A[i][1]
-      curr_max = A[i+1][1]
-    else:
-      curr_max = A[i][1]
-      curr_min = A[i+1][1]
-
-    if curr_min < _min: _min = curr_min
-    if curr_max > _max: _max = curr_max
-
-  if n%2 == 0:
-    if A[-1][1] < _min:
-      _min = A[-1][1]
-    elif A[-1][1] > _max:
-      _max = A[-1][1]
-
-  return (_min, _max)
-
-
-def remove_dists(A, n):
+  count = [0] * 10
+  B = [0] * n
   for i in range(n):
-    A[i] = A[i][0]
+    count[A[i][1]] +=1
+  for i in range(1,10):
+    count[i] += count[i-1]
+  for i in range(n-1,-1,-1):
+    B[count[A[i][1]] -1] = A[i]
+    count[A[i][1]] -=1
+  for i in range(n):
+    A[-i-1] = B[i]
 
 
-# O(4n) 
-def sort_by_dist(A):
-  n = len(A)
-  for i in range(n): # O(n)
-    A[i] = (A[i], (A[i][0]**2+A[i][1]**2)**1/2)
-
-  _min, _max = min_max(A) # O(n)
-
-  bucket_sort(A, n, _min, _max) # O(n) (rozklad jest jednostajny)
-
-  remove_dists(A, n) # O(n)
-
-  return A
+def prettySort(A):
+  preprocessArr(A)
+  sortByMulti(A)
+  sortBySingle(A)
+  print(A)
 
 
-A = [(1, 1), (0, 0), (-1, -1), (4, 4), (-3, -100)]
-print(sort_by_dist(A))
+T=[11,567788,2344,557]
+prettySort(T)
+
+
