@@ -1,31 +1,47 @@
-from cProfile import run
+
 from opt_sum_testy import runtests
 
-def my_pref_sum(low,high,prefs):
-    if low == 0:
-        return prefs[high]
-    return prefs[high] - prefs[low-1]
+def opt_sum(T):
+    def MinAbsVal(a,b):
+        if abs(a) < abs(b) : 
+            return a
+        else:
+            return b
 
+    def MaxAbsVal(a,b):
+        if abs(a) > abs(b) : 
+            return a
+        else:
+            return b
 
-def my_sol(T):
     n = len(T)
-    prefs = [0 for i in range(n)]
-    prefs[0] = T[0]
+    addedSums = [0] * (n + 1)
+
+    #dodajemy do obecnej wartosci wartosc wszystkich poprzednich
+    for i in range(1,n + 1):
+        addedSums[i] = addedSums[i - 1] + T[i - 1]
+
+    DP = [[0 for _ in range(n)] for _ in range(n)]
+    # w DP[i][j] zapamiętujemy wartość sumy tymczasowej, której wartość bezwzględna
+    # na danym przedziale jest minimalna (z maksymalnych)
+
+    # rozważamy coraz dłuższe przedziały
+    for length in  range(1,n):
+        for start in range(n - length):
+            end = start + length
+            DP[start][end] = addedSums[end + 1] - addedSums[start]
+            # dla każdego przedziału sprawdzamy, które 2 podprzedziały najlepiej
+            # dodać do siebie (tak, by max suma tymczasowa była jak najmniejsza)
+            # k jest "punktem podziału", bierzemy przedziały [start,k] oraz [k+1,end]
+            best = float("inf")  
+            for podzial in range(start,end):
+                best = MinAbsVal(MaxAbsVal(DP[start][podzial], DP[podzial+1][end]), best)
+
+            # do DP wpisujemy wartość z najlepszego podziału lub sumę całego przedziału,
+            # jeśli jej wartość bezwzględna jest większa
+
+            DP[start][end]= MaxAbsVal(best,DP[start][end])
     
-    for i in range(1,n):
-        prefs[i] = T[i] + prefs[i-1]
+    return abs(DP[0][n-1])
 
-    F =[[float("-inf") for i in range(n)] for i in range(n)] ## najwieksza wartość sumując od i do j
-    for i in range(1,n):
-        F[i-1][i] = abs(my_pref_sum(i-1,i ,prefs))
-
-    for j in range(2,n):
-        for i in range(j-1,-1,-1):
-            F[i][j] = max(abs(my_pref_sum( i,j, prefs)), min(F[i][j-1], F[i+1][j]))## albo sumuje te na pozycji i-j
-                    ## albo jako sume czesciową biorę cały wynik, w sensie finalny po dodaniu
-                    ## albo mniejszy ze sumowania od i do j-1, albo od i+1 do j
-                    ## no i tu rozstrzygam czy bardziej warto dodać wpierw element na pozycji itej
-                    ## czy element na pozycji jotej
-    return F[0][n-1] ## najwieksza wartośc sumując od 0 do n-1
-
-runtests(my_sol)
+runtests(opt_sum)

@@ -18,6 +18,10 @@
 ## zwracam posortowaną tablicę z indexami, tak jak w poleceniu
 
 
+## złożoność sortowania nlogn
+## złożoność przejrzenia tablicy(n*p + c*n)
+## c to stała wynikająca z przeglądania tablicy w celu uzupełnienia tablic testowych
+
 from zad4testy import runtests
 
 def makePrevious(T,previous):

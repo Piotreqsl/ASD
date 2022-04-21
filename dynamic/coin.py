@@ -11,22 +11,15 @@ nie działa: dla monet 1, 5, 8 wyda kwotę 15 jako 8 + 5 + 1 + 1 zamiast 5 + 5 +
 # zauwazmy, ze f(i)= 1 + min(f(i-nom), nom->dostepne nominaly, nasze rozwiazanie to f(n)
 
 
-def coins(arr,T):
-    dp=[0]*(T+1)     # w tablicy przechowuje min ilosc monet dla danej kwoty (rownej indeksowi)
-    for i in range(1,T+1):          # dla kazdego elementu szukam najmniejszego rozkladu
-        if i-arr[0]>=0:             # jezeli pierwszy nominal "miesci sie" w danej kwocie, jesli nie to kolejnych nawet nie ma po co sprawdzac
-            Min=dp[i-arr[0]]        # zakladam ze dla pierwszego nominalu jest najlepsza opcja
-            for nom in arr:         # sprawdzam nominaly,dla ktorego jezeli go wezme, to laczna licza monet bedzie najmniejsza
-                if i-nom>=0:        # poki nominaly mieszcza sie w kwocie, to spr dla ktorego z nich ilosc mmonet bedzie najmniejsza
-                    current=dp[i-nom]
-                    if(current<Min): 
-                        Min=current
-                        
-                else : 
-                    break
-            dp[i]=1+Min
-    print("curBest: ",dp)
-    return dp[T]
+def coindispending( nominals, cost):
+    DP = [float('inf') for i in range(cost + 1)]
+    DP[0] = 0
+    for i in range(1,cost + 1):
+        for coin in nominals:
+            if i - coin >= 0:
+                DP[i] = min(DP[i], DP[i - coin] + 1)
+    print(DP)
 
-arr=[1,2,4,6,8]
-print("number: ",coins(arr,11))
+
+T = [1,5,8]
+coindispending( T, 27 )

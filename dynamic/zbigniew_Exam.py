@@ -6,7 +6,7 @@ def zbigniew(A):
 
     for i in range(n):
         for e in range(e_max + 1):
-            if F[i][e] != float("inf"):
+            if F[i][e] != float("inf"): ## jeżeli na to pole możemy się dostać z taką sumą energi
                 for k in range(1, e + 1):
                     if i + k < n and e - k + A[i + k] <= e_max:
                         F[i + k][A[i + k] + e - k] = min(F[i + k][A[i + k] + e - k], F[i][e] + 1)
