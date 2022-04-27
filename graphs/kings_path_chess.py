@@ -1,44 +1,61 @@
 from queue import Queue
+from math import inf
 
-"""Dana jest szachownica o wymiarach n × n. Kazde pole (i, j)
-ma koszt (liczbe ze zbioru {1, . . . , 5}) umieszczony w tablicy A (na polu A[j][i]). W lewym górnym rogu
-szachownicy stoi król, którego zadaniem jest przejsc do prawego dolnego rogu, przechodzac po polach o
-minmalnym sumarycznym koszcie. Prosze zaimplementowac funkcje kings_path(A), która oblicza koszt
-sciezki króla. Funkcja powinna byc mozliwie jak najszybsza"""
+def get_solution(parents,v,w):
+    if w is None:
+        return []
+    else:
+        return get_solution(parents,v,parents[w[0]][w[1]]) + [(w[0],w[1])]
 
-# puszczamy bfs'a z wagami równymi kosztowi pola, jeżeli koszt pola wynosi 1 to możemy przejść na nie w tej fali,
-# jeżeli więcej to zmniejszamy koszt o 1 i wrzucamy spowrotem do kolejki
-
-
-def kings_path(A):
-    n = len(A)
-    dirs = [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]
-    visited = [[False] * n for _ in range(n)]
-    visited[0][0] = True
+def chess_board(G):
+    directions = [(-1, -1), (0, -1), (1, -1),(-1, 0), (1, 0),(-1, 1), (0, 1), (1, 1)]
+    n = len(G)
     Q = Queue()
-    Q.put([0, 0, 1])
-    Q.put(None)
-    cost = A[0][0]
+    visited = [[False]*n for _ in range(n)]
+    d = [[inf]*n for _ in range(n)]
+    parents = [[None]*n for _ in range(n)]
+
+    d[0][0] = G[0][0]
+    Q.put((G[0][0],0,0)) #(aktualna waga krawedzi, wspolrzedne)
+    visited[0][0] = True
 
     while not Q.empty():
-        u = Q.get()
-        if u is None:
-            cost += 1
-            Q.put(None)
-        elif u[2] > 1:
-            u[2] -= 1
-            Q.put(u)
-        elif u[0] == n - 1 and u[1] == n - 1:
-            return cost
-        else:
-            for i in range(8):
-                if 0 <= u[0] + dirs[i][0] < n and 0 <= u[1] + dirs[i][1] < n:
-                    v = [u[0] + dirs[i][0], u[1] + dirs[i][1], A[u[0] + dirs[i][0]][u[1] + dirs[i][1]]]
-                    Q.put(v)
-    return
+        val,x,y = Q.get()
+        if val > 1:
+            val -= 1
+            Q.put((val, x, y))
+            continue
+        for i in range(8):
+            v = (x + directions[i][0],y + directions[i][1])
+            if 0 <= v[0] < n and 0 <= v[1] < n and not visited[v[0]][v[1]]:
+                visited[v[0]][v[1]] = True
+                d[v[0]][v[1]] = d[x][y] + G[v[0]][v[1]]
+                parents[v[0]][v[1]] = (x,y)
+                Q.put((G[v[0]][v[1]],v[0],v[1]))
+
+    return get_solution(parents,(0,0),(n-1,n-1)), d[n-1][n-1]
+
+# [(0, 0), (0, 1), (1, 2), (2, 1), (3, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+# 7
+A = [[0, 1, 1, 5, 5],
+     [5, 5, 1, 5, 5],
+     [1, 1, 1, 5, 5],
+     [1, 5, 5, 5, 5],
+     [1, 1, 1, 1, 0]]
 
 
-A = [[1, 1, 1],
-     [2, 4, 1],
-     [1, 4, 1]]
-print(kings_path(A))
+print(chess_board(A))
+# [(0, 0), (0, 1), (0, 2), (1, 3), (2, 2), (3, 1), (4, 2), (4, 3), (4, 4)]
+# 7
+A = [[0, 1, 1, 1, 1],
+     [5, 5, 5, 1, 5],
+     [5, 5, 1, 5, 5],
+     [5, 1, 5, 5, 5],
+     [1, 1, 1, 1, 0]]
+print(chess_board(A))
+# [(0, 0), (0, 1), (1, 2), (2, 2)]
+# 4
+A = [[1, 1, 2],
+     [5, 1, 8],
+     [2, 1, 1]]
+print(chess_board(A))

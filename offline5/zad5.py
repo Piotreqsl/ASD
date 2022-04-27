@@ -23,6 +23,8 @@ from queue import PriorityQueue
 def plan(T):
     n = len(T)
     fuel = 0
+    taken = [False for i in range(n)]
+    taken[0] = True
 
     q = PriorityQueue()
 
@@ -41,9 +43,13 @@ def plan(T):
 
         if(fuel == 0):
             top = q.get()
-            res.append(top[1])
-           # print("tankuje z", top[0])
+            taken[top[1]] = True
+         
             fuel =  -1 * top[0]
+    
+    for i in range(1,n):
+        if(taken[i]):
+            res.append(i)
         
         
             
