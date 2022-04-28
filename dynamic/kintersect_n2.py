@@ -5,7 +5,7 @@ A = [[0,4], [1,10], [6,7], [2,8]]
 k = 3
 wynik:
 [0,1,3]
-co daje przedział o przecięciu [2,4z]
+co daje przedział o przecięciu [2,4]
 
 '''
 

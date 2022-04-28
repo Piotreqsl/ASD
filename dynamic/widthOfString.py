@@ -18,11 +18,13 @@ def width_of_string(S, t):
 
     for i in range(n + 1):
         for s in S:
-            substr = t[i - len(s): i]
+            
             if i > len(s):
+                substr = t[i - len(s): i]
                 if s == substr:
                     F[i] = max(F[i], min(len(s), F[i - len(s)]))
             elif i == len(s):
+                substr = t[i - len(s): i]
                 if s == substr:
                     F[i] = max(F[i], len(s))
 

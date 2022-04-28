@@ -15,6 +15,7 @@
 ## z dostępnego zasięgu i na pozycji k będe miał 
 ## T[i] paliwa
 
+## Złożoność: O(n) + operacje na kolejce priorytetowej (logn ?)
 
 from zad5testy import runtests
 
