@@ -1,0 +1,1 @@
+## pokrycie przedziałami jednostkowymi

@@ -23,17 +23,14 @@ from queue import PriorityQueue
 
 def plan(T):
     n = len(T)
-    fuel = 0
-    taken = [False for i in range(n)]
-    taken[0] = True
-
+    
     q = PriorityQueue()
-
+    bak = 0
     res = [0]
     for i in range(n):
-        fuel -=1
+        bak -=1
         if(i ==0):
-            fuel = T[0]
+            bak = T[0]
             continue
 
         if(i == n-1):
@@ -42,20 +39,12 @@ def plan(T):
         if(T[i] != 0):
             q.put(( -1* T[i], i))
 
-        if(fuel == 0):
+        if(bak == 0):
             top = q.get()
-            taken[top[1]] = True
-         
-            fuel =  -1 * top[0]
+            res.append(top[1])
+            bak =  -1 * top[0]
     
-    for i in range(1,n):
-        if(taken[i]):
-            res.append(i)
-        
-        
-            
-
-
+    
     # tu prosze wpisac wlasna implementacje
     return sorted(res)
 

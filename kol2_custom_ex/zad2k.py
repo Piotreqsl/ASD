@@ -1,3 +1,12 @@
+from zad2ktesty import runtests
+
+'''Dany jest ciąg liter S. Proszę znaleźć taki SPÓJNY fragment tego podciągu, który będzie
+najdłuższym możliwym palindromem.
+Algorytm należy zaimplementować jako funkcję postaci:'''
+
+
+
+
 def longestPalindrome( s):
       dp = [[False for i in range(len(s))] for i in range(len(s))]
       for i in range(len(s)):
@@ -19,7 +28,6 @@ def longestPalindrome( s):
                   start = i
       return s[start:start+max_length]
 
-    
-    # kajak
-s = 'romkajakan'
-print(longestPalindrome(s))
+    #return ""
+
+runtests ( longestPalindrome )

@@ -63,8 +63,7 @@ def find_cycle_length_4(graph):
     if parents != None:
       break
 
-  if parents == None:
-    return None
+
 
   if is_full:
     graph[0][n-1] = 1
@@ -74,3 +73,21 @@ def find_cycle_length_4(graph):
 
 # [5, 3, 4, 6]
 graph = [[0, 1, 1, 0, 0, 0, 0], [1, 0, 1, 0, 0, 0, 0], [1, 1, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 1, 0], [0, 0, 1, 1, 0, 0, 1], [0, 0, 0, 1, 0, 0, 1], [0, 0, 0, 0, 1, 1, 0]]
+print(find_cycle_length_4(graph))
+
+### cwiki
+
+def brute(G):
+  n = len(G)
+  for a in range(n):
+    for b in range(a+1, n):
+      counter = 0
+      for i in range(0,n):
+        if(i != a and i != b and G[a][i] and G[i][b]):
+          counter += 1
+        if counter >= 2:
+          return True
+  return False
+
+print(brute(graph))
+      

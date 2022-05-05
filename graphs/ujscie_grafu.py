@@ -8,6 +8,9 @@
 # czy nasz kandydat spełnia warunki na bycie uniwersalnym ujściem
 
 
+## albo
+## liczę sobie stopnie wejściowe do każdego wierzchołka, tj szukam ile krawędzi ma i to jest V^2 
+
 def mouth(G):
     n = len(G)
     cand = [0, None]
