@@ -8,6 +8,8 @@ jeden, najmniejszy z nich). Proszę napisać algorytm, który dla zadanej tablic
 naturalnych oraz wartości k oblicza k-ładną sumę. '''
 
 
+## ciag sie konczy
+
 
 def ksuma( T, k ):
     n=len(T)
@@ -16,6 +18,8 @@ def ksuma( T, k ):
     if k == n:
         return min(T)
     F = [float("inf") for i in range(n)]
+
+
     F[0] = T[0]
     for i in range(1,n):
         last_considered_idx = max(0, i-k)
@@ -23,10 +27,12 @@ def ksuma( T, k ):
         for p in range(last_considered_idx, i):
             min_av = min(min_av, F[p])
         F[i] = T[i] + min_av
+        if(i < k):
+            F[i] = min(F[i], T[i])
 
 
     
-
+    #3print(F)
     result = float("inf")
     for i in range(n-k, n):
         #print(F[i])

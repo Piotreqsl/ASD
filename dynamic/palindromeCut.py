@@ -14,9 +14,6 @@ def MinPalindromeCuts(s):
     if(isPal):
         return 0
     
-     # C[i] = Minimum number of cuts needed
-    # for palindrome partitioning of
-    # substring str[0..i]
     C = [0]* (n+1)
 
 
