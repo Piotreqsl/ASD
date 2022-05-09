@@ -41,7 +41,7 @@ def findMin(a):
     # Initialize difference
     # of two sums.
     diff = float("inf")
- 
+    
     # Find the largest j such that dp[n][j]
     # is true where j loops from sum/2 t0 0
     for j in range(su // 2, -1, -1):

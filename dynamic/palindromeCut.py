@@ -7,6 +7,9 @@ Return the minimum cuts needed for a palindrome partitioning of str.'''
     
 
 
+from torch import long
+
+
 def MinPalindromeCuts(s):
     n = len(s)
     
@@ -16,18 +19,24 @@ def MinPalindromeCuts(s):
     
     C = [0]* (n+1)
 
-
+    start = 0
+    longest = 1
    
     DP=[[False for i in range(n)] for j in range(n)]
     for i in range(1,n):
         DP[i][i] = True
         if(s[i-1] == s[i]):
+            start = i-1
+            longest = 2
             DP[i-1][i] = True
     DP[0][0] = True
 
     for length in range(2,n):
         for i in range(n - length):
-            DP[i][length + i] = ((s[i] == s[length+i]) and DP[i+1][i+length-1])
+            if((s[i] == s[length+i]) and DP[i+1][i+length-1]):
+                start = i
+                longest = length
+                DP[i][length + i] = True
     
     for i in range(n):
         if (DP[0][i] == True):
@@ -39,7 +48,8 @@ def MinPalindromeCuts(s):
                     C[i] = min(C[i], 1+ C[j])
                     #C[i] = 1 + C[j];
 
-
+    longestString = s[start:start+longest+1]
+    print(longestString)
 
 
     return C[n-1]

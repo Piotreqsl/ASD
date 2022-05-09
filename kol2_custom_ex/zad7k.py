@@ -1,5 +1,7 @@
 from zad7ktesty import runtests 
 
+from collections import deque 
+
 
 
 def BFSVisit(T,i,j):
@@ -44,13 +46,16 @@ def solve(W, Z, i,l, results):
 
 def ogrodnik (T, D, Z, l):
     n = len(D)
+
     glebokosci = [0 for i in range(n)]
 
     for i in range(n):
         glebokosci[i] = BFSVisit(T, 0, D[i])
+
   
     results = [[0 for i in range(l+1)] for i in range(n+1)]
     
     return solve(glebokosci, Z, n, l, results)
+    ##return f(glebokosci, Z, l,n, results)
 
 runtests( ogrodnik, all_tests=True )
