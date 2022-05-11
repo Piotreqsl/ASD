@@ -8,7 +8,7 @@ jeden, najmniejszy z nich). Proszę napisać algorytm, który dla zadanej tablic
 naturalnych oraz wartości k oblicza k-ładną sumę. '''
 
 
-## ciag sie konczy
+
 
 
 def ksuma( T, k ):

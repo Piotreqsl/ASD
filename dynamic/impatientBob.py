@@ -47,6 +47,38 @@ def impatient(A, k):
 
 
 
+def impatientBob(A,i,j,F): ## i < rozpatrywana ilość prac i ita jest ostanią wybraną len(A) , j <= k ile prac musi wziąć
+    if(j == 1):
+        F[i][j] = 0
+        return F[i][j]
+    if (j > i+1):
+        F[i][j] = float("inf")
+        return F[i][j]
+
+   
+    if F[i][j] is not None:
+        return F[i][j]
+
+    best = float("inf")    
+    for prev in range(i):
+        if(A[prev][1] <= A[i][0]):
+             best = min(best, impatientBob(A,prev,j-1,F) + A[i][0] - A[prev][1])
+    
+    F[i][j] = best
+    return F[i][j]
+
+def bobRecursively(A,k):
+    n = len(A)
+    F = [[None] * (k+1) for _ in range(n+1)]
+    for i in range(n):
+        _ = impatientBob(A,i,k,F)
+    result = float("inf")
+    for i in range(n):
+        if(F[i][k] is not None):
+            result = min(result, F[i][k])
+    return result
+    
+
 def bob_2(A,k):
     n = len(A)
     A = sorted(A, key=lambda x: x[1])
@@ -67,9 +99,11 @@ def bob_2(A,k):
     return res
 
 
-A = [(2,3),(4,7),(3.5,10)]
-impatient(A,2)
-print(bob_2(A,2))
+A = [(2,3),(4,7),(3.5,10), (11,20)]
+#impatient(A,2)
+#print(bob_2(A,2))
+print(bobRecursively(A,3))
+
 
                 
             

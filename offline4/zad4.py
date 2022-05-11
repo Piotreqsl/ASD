@@ -5,7 +5,7 @@
 ## Potem ustalam tablice pomocnicze, costs i students - wykonując obliczenia zawarte w tresci zadania
 ## oraz previus - służąca do spamiętania ostatniego niekolidującego budynku
 ## ustalam tablicę F
-##
+## 
 ## F[i][p] maksymalna liczba osob jaka wejdzie do i pierwszych budynków
 ## przy koszcie p
 ##

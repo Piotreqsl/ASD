@@ -43,7 +43,7 @@ def findMax(arr, n, k):
             # track minimum
             best = 100000000
              
-            # i-1 th separator before position arr[p=1..j]
+            # j-1 th separator before position arr[p=1..j]
             for p in range(1, j + 1):
                 best = min(best, max(dp[i - 1][p],
                                  sum(arr, p, j - 1)))    
