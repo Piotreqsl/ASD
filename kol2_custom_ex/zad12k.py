@@ -34,7 +34,7 @@ def findMax(arr, k):
 
     ## DP[k][p] - p pierwszych liczb podzielone na k elementów
     # 2 to k partitions
-    for i in range(2, k + 1): # 2 to n boards
+    for i in range(2, k + 1):
         for j in range(2, n + 1):
              
             # track minimum

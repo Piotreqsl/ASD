@@ -41,9 +41,6 @@ def solve(W, Z, i,l, results):
     results[i][l] = max(exclusion, inclusion)
     return results[i][l]
 
-
-
-
 def ogrodnik (T, D, Z, l):
     n = len(D)
 

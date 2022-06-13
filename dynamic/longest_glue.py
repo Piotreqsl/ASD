@@ -4,6 +4,8 @@ Problem stwierdzenia jaki najdłuzszy odcinek mozna uzyskac sklejajac najwyzej k
 
 # f(i, j) - minimalna liczba przedziałów, które trzeba skleić, żeby powstał przedział od i do j
 
+
+## a to offset
 def glue(A, F, i, j, a):
     if F[i - a][j - a] != None:
         return F[i - a][j - a]
