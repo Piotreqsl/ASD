@@ -1,0 +1,1 @@
+## scalanie list jednokierunkowych

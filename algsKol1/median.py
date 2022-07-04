@@ -43,5 +43,8 @@ def Median(T):
     ## no i teraz powpisywać se do tablicy odpowiednio
     print(low_val, high_val)
 
+    ## 
+
+
 T = [ [2,3,5], [7,11,13], [17,19,23]]
 Median(T)

@@ -14,7 +14,6 @@ def printTwoDim(n):
         print(n[i])
 
 
-import re
 from kintersect_tests import runtests
 
 def kintersect(A, k):
@@ -56,7 +55,7 @@ def kintersect(A, k):
 ## f(i,k) = najwieksze przeciecie k przedziałów, kiedy rozpatrujemy i+1 pierwszych z tablicy oraz A[i] jest brany pod uwagę
 
 def CountIntersect(i1,i2):
-    if(i1[1] <= i2[0]):
+    if(i1[1] <= i2[0] or i1[0] >= i2[1] or i1 == (0,0) or i2 == (0,0)):
         return (0,0)
     else:
        return (max(i1[0],i2[0]), min(i1[1],i2[1]))
@@ -118,16 +117,16 @@ def ki(A,k):
             best_intersect = rozpatrywany
    
     sol = getSol(P,best_i,k)
-    print("ROZW TO",best, "przy k=", k, "lensol = ", len(sol))
+    #print("ROZW TO",best, "przy k=", k, "lensol = ", len(sol))
 
     return sol
 
     
 A = [(0,4), (1,10), (6,7), (2,8)]
 
-##print(ki(A,3))
+print(ki(A,3))
        
-
+####
 
     
 

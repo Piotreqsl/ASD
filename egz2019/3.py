@@ -1,0 +1,1 @@
+## sortowanie kubełkowe np z 100 kubełkami na przedziale [0,1]

@@ -1,8 +1,3 @@
-# Piotr Śliperski
-
-from zad8testy import runtests
-
-
 ## Algorytm jest bardzo podobny do omawianego na wykładzie algorytmu Kruskala
 ## Jedyne co go modyfikuje, to fakt że zaczynam szukać drzewa od różnych krawędzi początkowych (zgodnie z posortowaniem)
 ## W ten sposób wiem że daną krawędź (początkową) na pewno biorę i obliczam minimalną różnicę wag tego drzewa rozpinającego
@@ -15,7 +10,7 @@ from zad8testy import runtests
 
 def find_set(parents,x) :
     if(x != parents[x]):
-        return find_set(parents,parents[x])
+        parents[x] = find_set(parents,parents[x])
     return parents[x] 
 
 
@@ -101,8 +96,3 @@ def highway( A ):
 
     #print(pos_edges)
     return Kruskal(pos_edges,n)
-
-
-
-# zmien all_tests na True zeby uruchomic wszystkie testy
-runtests( highway, all_tests = True )

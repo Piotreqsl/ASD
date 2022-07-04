@@ -34,7 +34,7 @@ def maxProduct(arr):
                 maxE = DP[i][3]
         return maxE
 
-A = [4, 5, -19, 3]
+A = [4, 5, -5, -3]
 print(maxProduct(A))
     
 
